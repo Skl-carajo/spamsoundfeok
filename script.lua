@@ -115,6 +115,18 @@ task.spawn(function()
 end)
 
 
+for _, v in pairs(workspace:GetDescendants()) do
+	if v:IsA("RemoteEvent") and v.Name == "AC6_FE_Sounds" then
+		print("REMOTE ENCONTRADO!!!! JAJAJAJAJA")
+		print("REMOTE ENCONTRADO!!!! JAJAJAJAJA")
+		print("REMOTE ENCONTRADO!!!! JAJAJAJAJA")
+		print("REMOTE ENCONTRADO!!!! JAJAJAJAJA")
+		print("REMOTE ENCONTRADO!!!! JAJAJAJAJA")
+		print("REMOTE ENCONTRADO!!!! JAJAJAJAJA")
+		print("REMOTE ENCONTRADO!!!! JAJAJAJAJA")
+	end
+end
+
 local sound = true
 local Name = "gayporn"
 
@@ -126,13 +138,6 @@ IDBox:GetPropertyChangedSignal("Text"):Connect(function()
 
 	for _, v in pairs(workspace:GetDescendants()) do
 		if v:IsA("RemoteEvent") and v.Name == "AC6_FE_Sounds" then
-			print("REMOTE ENCONTRADO!!!! JAJAJAJAJA")
-			print("REMOTE ENCONTRADO!!!! JAJAJAJAJA")
-			print("REMOTE ENCONTRADO!!!! JAJAJAJAJA")
-			print("REMOTE ENCONTRADO!!!! JAJAJAJAJA")
-			print("REMOTE ENCONTRADO!!!! JAJAJAJAJA")
-			print("REMOTE ENCONTRADO!!!! JAJAJAJAJA")
-			print("REMOTE ENCONTRADO!!!! JAJAJAJAJA")
 			if sound then
 				v:FireServer("newSound", Name, workspace, ID, pitch, volume, true)
 				v:FireServer("playSound", Name)
