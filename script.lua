@@ -82,6 +82,7 @@ Manipulate2Corner.Parent = Manipulate2Frame
 
 local IDBox2 = createEntry(Manipulate2Frame, 0.069, "InsertID")
 local TimeBox = createEntry(Manipulate2Frame, 0.363, "Time")
+local Gain = createEntry(Manipulate2Frame, 0.661, "Gain")
 
 -- Drag UI
 local UIS = game:GetService("UserInputService")
@@ -165,7 +166,7 @@ IDBox1:GetPropertyChangedSignal("Text"):Connect(function()
 end)
 
 
------ music fe chipeo lol
+----- music fe chipeo lol (quema wawas)
 
 for _, v in pairs(workspace:GetDescendants()) do
 	if v:IsA("RemoteEvent") and v.Name == "Music_FE" then
@@ -182,6 +183,22 @@ IDBox2:GetPropertyChangedSignal("Text"):Connect(function()
 				if sound == true then
 					v:FireServer("Song", "agr", IDBox2.Text)
 					v:FireServer("Volume", "agr", 10)
+					
+					v:FireServer("EQ1", "agr", "LowGain", Gain.Text)
+					v:FireServer("EQ1", "agr", "MidGain", Gain.Text)
+					v:FireServer("EQ1", "agr", "HighGain", Gain.Text)
+					
+					v:FireServer("EQ2", "agr", "LowGain", Gain.Text)
+					v:FireServer("EQ2", "agr", "MidGain", Gain.Text)
+					v:FireServer("EQ2", "agr", "HighGain", Gain.Text)
+					
+					v:FireServer("EQ3", "agr", "LowGain", Gain.Text)
+					v:FireServer("EQ3", "agr", "MidGain", Gain.Text)
+					v:FireServer("EQ3", "agr", "HighGain", Gain.Text)
+					
+					v:FireServer("EQ4", "agr", "LowGain", Gain.Text)
+					v:FireServer("EQ4", "agr", "MidGain", Gain.Text)
+					v:FireServer("EQ4", "agr", "HighGain", Gain.Text)
 				elseif sound == false then
 					v:FireServer("Song", "agr", 0)
 					v:FireServer("Volume", "agr", 0)
