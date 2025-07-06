@@ -24,16 +24,6 @@ Text.TextScaled = true
 Text.RichText = true
 Text.Text = 'FE+ AC6 Sound Spam (<font size="5" color="rgb(255,0,0)">❌</font>)'
 
-local ManipulateFrame = Instance.new("Frame")
-ManipulateFrame.Parent = frame1
-ManipulateFrame.AnchorPoint = Vector2.new(0.5, 0.5)
-ManipulateFrame.BackgroundColor3 = Color3.fromRGB(168, 168, 168)
-ManipulateFrame.Position = UDim2.new(0.5, 0, 0.6, 0)
-ManipulateFrame.Size = UDim2.new(0.9, 0, 0.7, 0)
-
-local ManipulateCorner = Instance.new("UICorner")
-ManipulateCorner.CornerRadius = UDim.new(0, 4)
-ManipulateCorner.Parent = ManipulateFrame
 
 local function createEntry(parent, posY, defaultText)
 	local frame = Instance.new("Frame")
@@ -62,9 +52,36 @@ local function createEntry(parent, posY, defaultText)
 	return box
 end
 
-local IDBox = createEntry(ManipulateFrame, 0.069, "InsertID")
-local PitchBox = createEntry(ManipulateFrame, 0.363, "Pitch")
-local VolumeBox = createEntry(ManipulateFrame, 0.661, "Volume")
+local Manipulate1Frame = Instance.new("Frame")
+Manipulate1Frame.Parent = frame1
+Manipulate1Frame.AnchorPoint = Vector2.new(0.5, 0.5)
+Manipulate1Frame.BackgroundColor3 = Color3.fromRGB(168, 168, 168)
+Manipulate1Frame.Position = UDim2.new(0.262, 0, 0.564, 0)
+Manipulate1Frame.Size = UDim2.new(0.423, 0, 0.707, 0)
+
+local Manipulate1Corner = Instance.new("UICorner")
+Manipulate1Corner.CornerRadius = UDim.new(0, 4)
+Manipulate1Corner.Parent = Manipulate1Frame
+
+local IDBox1 = createEntry(Manipulate1Frame, 0.069, "InsertID")
+local PitchBox = createEntry(Manipulate1Frame, 0.363, "Pitch")
+local VolumeBox = createEntry(Manipulate1Frame, 0.661, "Volume")
+
+--- Music_FE
+
+local Manipulate2Frame = Instance.new("Frame")
+Manipulate2Frame.Parent = frame1
+Manipulate2Frame.AnchorPoint = Vector2.new(0.5, 0.5)
+Manipulate2Frame.BackgroundColor3 = Color3.fromRGB(168, 168, 168)
+Manipulate2Frame.Position = UDim2.new(0.738, 0, 0.564, 0)
+Manipulate2Frame.Size = UDim2.new(0.423, 0, 0.707, 0)
+
+local Manipulate2Corner = Instance.new("UICorner")
+Manipulate2Corner.CornerRadius = UDim.new(0, 4)
+Manipulate2Corner.Parent = Manipulate2Frame
+
+local IDBox2 = createEntry(Manipulate2Frame, 0.069, "InsertID")
+local TimeBox = createEntry(Manipulate2Frame, 0.363, "Time")
 
 -- Drag UI
 local UIS = game:GetService("UserInputService")
@@ -115,23 +132,22 @@ task.spawn(function()
 end)
 
 
+
+
+---- ac6 lol
+
 for _, v in pairs(workspace:GetDescendants()) do
 	if v:IsA("RemoteEvent") and v.Name == "AC6_FE_Sounds" then
-		print("REMOTE ENCONTRADO!!!! JAJAJAJAJA")
-		print("REMOTE ENCONTRADO!!!! JAJAJAJAJA")
-		print("REMOTE ENCONTRADO!!!! JAJAJAJAJA")
-		print("REMOTE ENCONTRADO!!!! JAJAJAJAJA")
-		print("REMOTE ENCONTRADO!!!! JAJAJAJAJA")
-		print("REMOTE ENCONTRADO!!!! JAJAJAJAJA")
-		print("REMOTE ENCONTRADO!!!! JAJAJAJAJA")
+		print("REMOTE ENCONTRADO : " .. v.Name)
+
 	end
 end
 
 local sound = true
 local Name = "gayporn"
 
-IDBox:GetPropertyChangedSignal("Text"):Connect(function()
-	local soundid = IDBox.Text
+IDBox1:GetPropertyChangedSignal("Text"):Connect(function()
+	local soundid = IDBox1.Text
 	local volume = VolumeBox.Text
 	local pitch = PitchBox.Text
 	local ID = "rbxassetid://"..soundid
@@ -144,6 +160,33 @@ IDBox:GetPropertyChangedSignal("Text"):Connect(function()
 			else
 				v:FireServer("stopSound", Name)
 			end
+		end
+	end
+end)
+
+
+----- music fe chipeo lol
+
+for _, v in pairs(workspace:GetDescendants()) do
+	if v:IsA("RemoteEvent") and v.Name == "Music_FE" then
+		print("REMOTE ENCONTRADO : " .. v.Name)
+
+	end
+end
+
+IDBox2:GetPropertyChangedSignal("Text"):Connect(function()
+	while true do
+		wait(TimeBox.Text)
+		for i, v in pairs(game:GetService("Workspace"):GetDescendants()) do
+			if v:IsA("RemoteEvent") and v.Name == "Music_FE" then
+				if sound == true then
+					v:FireServer("Song", "agr", IDBox2.Text)
+					v:FireServer("Volume", "agr", 10)
+				elseif sound == false then
+					v:FireServer("Song", "agr", 0)
+					v:FireServer("Volume", "agr", 0)
+				end
+			end	
 		end
 	end
 end)
