@@ -1,8 +1,17 @@
 -- Gui principal
+local chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
+local length = math.random(1,10)
+local result = ""
+
+for i = 1, length do
+	result ..= chars:sub(math.random(#chars), math.random(#chars))
+end
+
+
 local screen = Instance.new("ScreenGui")
-screen.Name = "SoundSpamUI"
+screen.Name = result
 screen.ResetOnSpawn = false
-screen.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+screen.Parent = game.CoreGui
 
 local frame1 = Instance.new("Frame")
 frame1.Name = "MainFrame"
