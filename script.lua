@@ -158,9 +158,12 @@ local Name = "gayporn"
 
 IDBox1:GetPropertyChangedSignal("Text"):Connect(function()
 	local soundid = IDBox1.Text
+	if not tonumber(soundid) then return end
 	local volume = VolumeBox.Text
+	if not tonumber(volume) then return end
 	local pitch = PitchBox.Text
-	local ID = "rbxassetid://"..soundid
+	if not tonumber(pitch) then return end
+	local ID = "rbxassetid://"..tonumber(soundid)
 
 	for _, v in pairs(workspace:GetDescendants()) do
 		if v:IsA("RemoteEvent") and v.Name == "AC6_FE_Sounds" then
